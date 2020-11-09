@@ -24,8 +24,8 @@ public class MiscTests {
     public static void main(String[] args) throws IOException, ParseException, JSONException {
 
 
-        /*String token = "xoxb-1260259361063-1268276135206-onTDt4inRH5wn1tqVoBnRENq";
-        String channel = "C018FJEUFT3";
+        /*String token = "";
+        String channel = "";
         List<String> messages = new ArrayList<>();
         channel = URLEncoder.encode(channel, StandardCharsets.UTF_8);
 
