@@ -14,17 +14,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.http.HttpClient;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 
 public class HTTPRequest {
 
-    public static String Request(String url, String method) throws IOException {
+    public static String Request(String url, String method, String auth) throws IOException {
         URL urlForRequest = new URL(url);
         String readLine;
         String output = "";
         HttpURLConnection connection = (HttpURLConnection) urlForRequest.openConnection();
         connection.setRequestMethod(method);
         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        //connection.setRequestProperty("Authorization", auth);
+        connection.setRequestProperty("Authorization", "Bearer " + auth);
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
             BufferedReader in = new BufferedReader(
@@ -42,24 +43,24 @@ public class HTTPRequest {
         return output;
     }
 
-
     //private static String LINE_FEED = "\r\n";
 
-    public static String POSTwFile(String url, String filepath) throws IOException {
+    public static String POSTwFile(String url, String filepath, String token) throws IOException {
 
         OkHttpClient client = new OkHttpClient().newBuilder()
-                .build();
-        MediaType mediaType = MediaType.parse("text/plain");
+          .build();
+        MediaType mediaType = MediaType.parse("multipart/form-data");
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("file", filepath,
-                        RequestBody.create(MediaType.parse("application/octet-stream"),
-                                new File(filepath)))
-                .build();
+          .addFormDataPart("file","/"+filepath,
+            RequestBody.create(MediaType.parse("application/octet-stream"),
+            new File("/"+filepath)))
+          .build();
         Request request = new Request.Builder()
-                .url(url)
-                .method("POST", body)
-                .addHeader("Cookie", "b=bqjwz6qwia1zsqok1ring9va3")
-                .build();
+          .url(url)
+          .method("POST", body)
+          .addHeader("Authorization", "Bearer "+token)
+          .addHeader("Content-Type", "multipart/form-data")
+          .build();
         Response response = client.newCall(request).execute();
 
         return response.body().string();
