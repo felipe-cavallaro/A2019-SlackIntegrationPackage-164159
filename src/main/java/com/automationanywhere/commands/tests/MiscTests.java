@@ -24,18 +24,24 @@ public class MiscTests {
     public static void main(String[] args) throws IOException, ParseException, JSONException {
 
 
-        /*String token = "";
+        String token = "";
         String channel = "";
         List<String> messages = new ArrayList<>();
         channel = URLEncoder.encode(channel, StandardCharsets.UTF_8);
 
-        //String url = "https://slack.com/api/conversations.history?token="+token+"&channel="+channel;
-        //String response = HTTPRequest.Request(url, "GET");
+       /* String url = "https://slack.com/api/conversations.history?channel="+channel;
+        String response = HTTPRequest.Request(url, "GET",token);
 
-        messages = ParseResponse.MessageHistoryStrings(token, messages, channel);
+        messages = ParseResponse.MessageHistoryStrings(token, messages, channel);*/
 
+        //Retrieve APIKey String that is passed as Session Object
+        String title = "This is a test file";
+        String file = "C:\\Users\\felipecl\\Downloads\\UI_SQL_example.zip";
+        String url = "https://slack.com/api/files.upload?channels=" + channel + "&title=" + title;
+        String response = HTTPRequest.POSTwFile(url, file, token);
 
-        System.out.println(messages);*/
+        System.out.println(response);
 
     }
+
 }

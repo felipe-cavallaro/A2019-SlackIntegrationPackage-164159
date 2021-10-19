@@ -55,8 +55,8 @@ public class StartSession {
         tokenCheck = token.getInsecureString();
 
         //Call Auth test API to validate token...
-        String url = "https://slack.com/api/auth.test?token="+tokenCheck;
-        String output = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/auth.test";
+        String output = HTTPRequest.Request(url, "POST", tokenCheck);
         Object obj = new JSONParser().parse(output);
         JSONObject jsonObj = (JSONObject) obj;
         String status = jsonObj.get("ok").toString();

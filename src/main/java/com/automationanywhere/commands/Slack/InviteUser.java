@@ -68,8 +68,8 @@ public class InviteUser {
         String token = (String) this.sessions.get(sessionName);
         channel=URLEncoder.encode(channel, StandardCharsets.UTF_8);
         user=URLEncoder.encode(user, StandardCharsets.UTF_8);
-        String url = "https://slack.com/api/conversations.invite?token="+token+"&channel="+channel+"&users="+user;
-        String response = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/conversations.invite?channel="+channel+"&users="+user;
+        String response = HTTPRequest.Request(url, "POST", token);
 
         String post = ParseResponse.OutputMessage(response, "User successfully invited to channel");
 

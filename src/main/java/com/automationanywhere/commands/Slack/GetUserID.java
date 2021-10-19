@@ -61,8 +61,8 @@ public class GetUserID {
         //Retrieve APIKey String that is passed as Session Object
         String token = (String) this.sessions.get(sessionName);
         String id = null;
-        String url = "https://slack.com/api/users.list?token="+token;
-        String response = HTTPRequest.Request(url, "GET");
+        String url = "https://slack.com/api/users.list";
+        String response = HTTPRequest.Request(url, "GET", token);
         //Parse JSON response to get result of request
         Object obj = new JSONParser().parse(response);
         JSONObject jsonObj = (JSONObject) obj;

@@ -69,8 +69,8 @@ public class PostFile {
         String token = (String) this.sessions.get(sessionName);
         channel = URLEncoder.encode(channel, StandardCharsets.UTF_8);
         title = URLEncoder.encode(title, StandardCharsets.UTF_8);
-        String url = "https://slack.com/api/files.upload?token=" + token + "&channels=" + channel + "&title=" + title;
-        String response = HTTPRequest.POSTwFile(url, file);
+        String url = "https://slack.com/api/files.upload?channels=" + channel + "&title=" + title;
+        String response = HTTPRequest.POSTwFile(url, file, token);
 
 
         String post = ParseResponse.OutputMessage(response, "File Posted");

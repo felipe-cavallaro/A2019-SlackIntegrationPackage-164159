@@ -63,8 +63,8 @@ public class CreateChannel {
         String token = (String) this.sessions.get(sessionName);
         Map<String, Value> ResMap = new LinkedHashMap(); //For output
         channel=URLEncoder.encode(channel, StandardCharsets.UTF_8);
-        String url = "https://slack.com/api/conversations.create?token="+token+"&name="+channel;
-        String response = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/conversations.create?&name="+channel;
+        String response = HTTPRequest.Request(url, "POST", token);
         //Parse JSON response to get result of request
         Object obj = new JSONParser().parse(response);
         JSONObject jsonObj = (JSONObject) obj;

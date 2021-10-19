@@ -72,8 +72,8 @@ public class PostMessage {
         String token = (String) this.sessions.get(sessionName);
         channel=URLEncoder.encode(channel, StandardCharsets.UTF_8);
         text = URLEncoder.encode(text, StandardCharsets.UTF_8);
-        String url = "https://slack.com/api/chat.postMessage?token="+token+"&channel="+channel+"&text="+text+"&thread_ts="+timestamp;
-        String response = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/chat.postMessage?channel="+channel+"&text="+text+"&thread_ts="+timestamp;
+        String response = HTTPRequest.Request(url, "POST", token);
 
         String post = ParseResponse.OutputMessage(response, "Message posted successfully");
         return new StringValue(post);

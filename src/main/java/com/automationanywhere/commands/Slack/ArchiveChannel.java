@@ -63,8 +63,8 @@ public class ArchiveChannel {
         //Retrieve APIKey String that is passed as Session Object
         String token = (String) this.sessions.get(sessionName);
         channel = URLEncoder.encode(channel, StandardCharsets.UTF_8);
-        String url = "https://slack.com/api/conversations.archive?token=" + token + "&channel=" + channel;
-        String response = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/conversations.archive?channel=" + channel;
+        String response = HTTPRequest.Request(url, "POST", token);
 
         String post = ParseResponse.OutputMessage(response, "File Posted");
         return new StringValue(post);

@@ -59,8 +59,8 @@ public class GetChannelID {
         //Retrieve APIKey String that is passed as Session Object
         String token = (String) this.sessions.get(sessionName);
         String id = null;
-        String url = "https://slack.com/api/conversations.list?token="+token+"&limit=1000";
-        String response = HTTPRequest.Request(url, "POST");
+        String url = "https://slack.com/api/conversations.list?limit=1000";
+        String response = HTTPRequest.Request(url, "POST", token);
         //Parse JSON response to get result of request
         Object obj = new JSONParser().parse(response);
         JSONObject jsonObj = (JSONObject) obj;
