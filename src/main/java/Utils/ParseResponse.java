@@ -32,8 +32,8 @@ public class ParseResponse {
         Boolean hasMore = null;
         String cursor = "";
         do {
-            String url = "https://slack.com/api/conversations.history?token="+token+"&channel="+channel+"&cursor="+cursor;
-            String response = HTTPRequest.Request(url, "GET");
+            String url = "https://slack.com/api/conversations.history?channel="+channel+"&cursor="+cursor;
+            String response = HTTPRequest.Request(url, "GET", token);
             Object obj = new JSONParser().parse(response);
             JSONObject jsonObj = (JSONObject) obj;
             String result = jsonObj.get("ok").toString();
@@ -78,8 +78,8 @@ public class ParseResponse {
         String cursor="";
 
         do {
-            String url = "https://slack.com/api/conversations.history?token="+token+"&channel="+channel+"&limit=5"+"&cursor="+cursor;
-            String response = HTTPRequest.Request(url, "GET");
+            String url = "https://slack.com/api/conversations.history?channel="+channel+"&limit=5"+"&cursor="+cursor;
+            String response = HTTPRequest.Request(url, "GET", token);
             Object obj = new JSONParser().parse(response);
             JSONObject jsonObj = (JSONObject) obj;
             String result = jsonObj.get("ok").toString();
